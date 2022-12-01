@@ -16,4 +16,14 @@ public class InputView {
         InputPriceValidator.validateZero(purchasePrice);
         return purchasePrice;
     }
+
+    public static String inputWinningNumber() {
+        System.out.println(Message.INPUT_WINNING_NUMBER.getMessage());
+        String inputWinning = readLine();
+        return inputWinning;
+    }
+
+    public static int inputBonusNumber() {
+
+    }
 }
