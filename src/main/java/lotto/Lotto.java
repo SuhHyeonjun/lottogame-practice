@@ -1,8 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private static final int START_RANGE = 1;
@@ -13,6 +16,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDupulicate(numbers);
         this.numbers = numbers;
     }
 
@@ -29,6 +33,13 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateDupulicate(List<Integer> numbers) {
+        Set<Integer> numbersSet = new HashSet<>(numbers);
+        if (numbersSet.size() != numbers.size()) {
+            throw new IllegalStateException();
         }
     }
 
