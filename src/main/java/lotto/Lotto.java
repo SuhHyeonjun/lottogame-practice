@@ -16,7 +16,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateDupulicate(numbers);
+        validateLottoDupulicate(numbers);
+        validateLottoRange(numbers);
         this.numbers = numbers;
     }
 
@@ -36,10 +37,18 @@ public class Lotto {
         }
     }
 
-    private void validateDupulicate(List<Integer> numbers) {
+    private void validateLottoDupulicate(List<Integer> numbers) {
         Set<Integer> numbersSet = new HashSet<>(numbers);
         if (numbersSet.size() != numbers.size()) {
             throw new IllegalStateException();
+        }
+    }
+
+    private void validateLottoRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalStateException();
+            }
         }
     }
 
