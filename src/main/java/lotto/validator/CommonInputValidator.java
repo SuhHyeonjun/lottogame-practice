@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import lotto.ErrorMessage;
+import lotto.view.ErrorMessage;
 
 public class CommonInputValidator {
 

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.view.ErrorMessage;
 
 public class Lotto {
     private static final int START_RANGE = 1;

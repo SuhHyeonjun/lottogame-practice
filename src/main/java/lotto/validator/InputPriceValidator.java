@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import lotto.ErrorMessage;
+import lotto.view.ErrorMessage;
 
 public class InputPriceValidator {
     private static final int DIVIDE = 1000;

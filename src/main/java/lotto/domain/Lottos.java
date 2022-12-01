@@ -1,6 +1,8 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.Lotto.makeLotto;
+import static lotto.domain.Lotto.makeLotto;
+
+import lotto.view.OutputView;
 
 public class Lottos {
     private static final int DIVIDE = 1000;
