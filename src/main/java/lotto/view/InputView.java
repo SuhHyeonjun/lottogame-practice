@@ -2,6 +2,8 @@ package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import java.util.List;
+import lotto.domain.TypeChanger;
 import lotto.validator.CommonInputValidator;
 import lotto.validator.InputPriceValidator;
 
@@ -17,15 +19,16 @@ public class InputView {
         return purchasePrice;
     }
 
-    public static String inputWinningNumber() {
+    public static List<Integer> inputWinningNumber() {
         System.out.println(Message.INPUT_WINNING_NUMBER.getMessage());
         String inputWinning = readLine();
-        return inputWinning;
+        return TypeChanger.changeToList(inputWinning);
     }
 
     public static int inputBonusNumber() {
         System.out.println(Message.INPUT_BONUS_NUMBER.getMessage());
         String inputBonus = readLine();
+        CommonInputValidator.validateCommonInput(inputBonus);
         int bonusNumber = Integer.parseInt(inputBonus);
         return bonusNumber;
     }
