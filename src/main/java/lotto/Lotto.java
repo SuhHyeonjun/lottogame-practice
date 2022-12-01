@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -16,18 +17,23 @@ public class Lotto {
     }
 
     public static List<Integer> makeLotto() {
-        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(START_RANGE, END_RANGE, LOTTO_COUNT);
-        return lotto;
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_RANGE, END_RANGE, LOTTO_COUNT);
+        sortLotto(numbers);
+        return numbers;
     }
 
-    @Override
-    public String toString() {
-        return numbers.toString();
+    private static void sortLotto(List<Integer> numbers) {
+        Collections.sort(numbers);
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }
