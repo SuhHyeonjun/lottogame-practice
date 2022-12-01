@@ -24,6 +24,9 @@ public class InputView {
     }
 
     public static int inputBonusNumber() {
-
+        System.out.println(Message.INPUT_BONUS_NUMBER.getMessage());
+        String inputBonus = readLine();
+        int bonusNumber = Integer.parseInt(inputBonus);
+        return bonusNumber;
     }
 }
