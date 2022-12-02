@@ -5,6 +5,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import java.util.List;
 import lotto.domain.TypeChanger;
 import lotto.validator.CommonInputValidator;
+import lotto.validator.InputBonusValidator;
 import lotto.validator.InputPriceValidator;
 import lotto.validator.InputWinningValidator;
 
@@ -33,6 +34,7 @@ public class InputView {
         System.out.println(Message.INPUT_BONUS_NUMBER.getMessage());
         String inputBonus = readLine();
         CommonInputValidator.validateCommonInput(inputBonus);
+        InputBonusValidator.validateBonusNumber(inputBonus);
         int bonusNumber = Integer.parseInt(inputBonus);
         return bonusNumber;
     }
