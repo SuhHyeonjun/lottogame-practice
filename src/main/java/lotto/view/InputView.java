@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.domain.TypeChanger;
 import lotto.validator.CommonInputValidator;
 import lotto.validator.InputPriceValidator;
+import lotto.validator.InputWinningValidator;
 
 public class InputView {
 
@@ -22,7 +23,10 @@ public class InputView {
     public static List<Integer> inputWinningNumber() {
         System.out.println(Message.INPUT_WINNING_NUMBER.getMessage());
         String inputWinning = readLine();
-        return TypeChanger.changeToList(inputWinning);
+        InputWinningValidator.validateInputWinningString(inputWinning);
+        List<Integer> winningNumbers = TypeChanger.changeToList(inputWinning);
+        InputWinningValidator.validateWinningNumber(winningNumbers);
+        return winningNumbers;
     }
 
     public static int inputBonusNumber() {
