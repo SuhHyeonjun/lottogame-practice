@@ -7,7 +7,6 @@ import lotto.view.OutputView;
 
 public class Lottos {
 
-
     public static void makeLottos(int lottoAmount) {
         for (int i = 0; i < lottoAmount; i++) {
             List<Integer> numbers = makeLotto();
