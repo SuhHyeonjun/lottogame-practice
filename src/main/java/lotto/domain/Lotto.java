@@ -32,7 +32,7 @@ public class Lotto {
         Collections.sort(numbers);
     }
 
-    public void validateLottoRange(List<Integer> numbers) {
+    public static void validateLottoRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < START_RANGE || number > END_RANGE) {
                 throw new IllegalStateException(ErrorMessage.ERROR_LOTTO_RANGE.getErrorMessage());
@@ -40,13 +40,13 @@ public class Lotto {
         }
     }
 
-    public void validate(List<Integer> numbers) {
+    public static void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_SIZE.getErrorMessage());
         }
     }
 
-    public void validateLottoDupulicate(List<Integer> numbers) {
+    public static void validateLottoDupulicate(List<Integer> numbers) {
         Set<Integer> numbersSet = new HashSet<>(numbers);
         if (numbersSet.size() != numbers.size()) {
             throw new IllegalStateException(ErrorMessage.ERROR_LOTTO_DUPLICATE.getErrorMessage());
