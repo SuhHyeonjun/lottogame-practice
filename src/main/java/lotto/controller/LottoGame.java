@@ -1,8 +1,11 @@
 package lotto.controller;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.domain.LottoRank;
 import lotto.domain.Lottos;
 import lotto.domain.RankMatcher;
 import lotto.view.ErrorMessage;
@@ -22,8 +25,28 @@ public class LottoGame {
         List<Integer> winningNumbers = InputView.inputWinningNumber();
         int bonusNumber = InputView.inputBonusNumber();
         checkOverlap(winningNumbers, bonusNumber);
-        int matchCount = RankMatcher.countMatchNumbers(lottos, winningNumbers);
+        List<Integer> mostMatchLotto = RankMatcher.getMostMatchLotto(lottos, winningNumbers);
+        int matchCount = RankMatcher.getMatchCount();
         System.out.println(matchCount);
+        boolean bonus = RankMatcher.matchBonus(mostMatchLotto, bonusNumber);
+        System.out.println(bonus);
+        Map<LottoRank, Integer> result = setMatchRank(matchCount, bonus);
+        OutputView.printWinningLists(result);
+    }
+
+    public static Map<LottoRank, Integer> setMatchRank(int matchCount, boolean bonus) {
+        Map<LottoRank, Integer> result = setRankResult();
+        LottoRank rank = LottoRank.getRankResult(matchCount, bonus);
+        result.put(rank, result.get(rank) + 1);
+        return result;
+    }
+
+    private static Map<LottoRank, Integer> setRankResult() {
+        Map<LottoRank, Integer> result = new LinkedHashMap<>();
+        for (LottoRank rank : LottoRank.values()) {
+            result.put(rank, 0);
+        }
+        return result;
     }
 
     private static void checkOverlap(List<Integer> winningNumbers, int bonusNumber) {
@@ -31,10 +54,4 @@ public class LottoGame {
             throw new IllegalArgumentException(ErrorMessage.ERROR_OVERLAP.getErrorMessage());
         }
     }
-
-    private static void printResult(int matchCount) {
-
-    }
-
-
 }
