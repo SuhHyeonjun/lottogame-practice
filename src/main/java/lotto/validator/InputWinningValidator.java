@@ -14,8 +14,8 @@ public class InputWinningValidator {
 
     public static void validateInputWinningString(String inputWinning) {
         validateInputBlank(inputWinning);
-        validateInputSeparator(inputWinning);
         validateInputType(inputWinning);
+        validateInputSeparator(inputWinning);
     }
 
     private static void validateInputType(String inputWinning) {
@@ -28,9 +28,11 @@ public class InputWinningValidator {
     }
 
     private static void validateInputSeparator(String inputWinning) {
-        String[] checkString = inputWinning.split(",");
-        if (checkString.length != 6) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_INPUT_SEPARATOR.getErrorMessage());
+        String[] checkString = inputWinning.split("");
+        for (String str : checkString) {
+            if (!str.equals(",")) {
+                throw new IllegalArgumentException(ErrorMessage.ERROR_INPUT_SEPARATOR.getErrorMessage());
+            }
         }
     }
 
