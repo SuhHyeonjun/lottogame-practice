@@ -15,6 +15,7 @@ public class Lottos {
             lottos.add(numbers);
             OutputView.printLottos(new Lotto(numbers));
         }
+        System.out.println();
         return lottos;
     }
 }

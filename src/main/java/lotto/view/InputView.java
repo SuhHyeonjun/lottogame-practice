@@ -18,6 +18,7 @@ public class InputView {
         int purchasePrice = Integer.parseInt(inputPrice);
         InputPriceValidator.validatePurchasePrice(purchasePrice);
         InputPriceValidator.validateZero(purchasePrice);
+        System.out.println();
         return purchasePrice;
     }
 
@@ -27,6 +28,7 @@ public class InputView {
         InputWinningValidator.validateInputWinningString(inputWinning);
         List<Integer> winningNumbers = TypeChanger.changeToList(inputWinning);
         InputWinningValidator.validateWinningNumber(winningNumbers);
+        System.out.println();
         return winningNumbers;
     }
 
@@ -36,6 +38,7 @@ public class InputView {
         CommonInputValidator.validateCommonInput(inputBonus);
         InputBonusValidator.validateBonusNumber(inputBonus);
         int bonusNumber = Integer.parseInt(inputBonus);
+        System.out.println();
         return bonusNumber;
     }
 }
