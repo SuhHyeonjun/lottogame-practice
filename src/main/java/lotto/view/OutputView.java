@@ -1,6 +1,5 @@
 package lotto.view;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
