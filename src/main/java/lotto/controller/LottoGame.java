@@ -1,10 +1,9 @@
 package lotto.controller;
 
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+
 import lotto.domain.LottoRank;
 import lotto.domain.Lottos;
 import lotto.domain.RankMatcher;
@@ -16,41 +15,38 @@ public class LottoGame {
     private static final int DIVIDE = 1000;
 
     public void start() {
-        try {
-            int purchasePrice = InputView.inputPurchasePrice();
-            int lottoAmount = purchasePrice / DIVIDE;
-            System.out.println();
-            OutputView.printAmount(lottoAmount);
-            List<List<Integer>> lottos = Lottos.makeLottos(lottoAmount);
-            System.out.println(lottos);
-            List<Integer> winningNumbers = InputView.inputWinningNumber();
-            int bonusNumber = InputView.inputBonusNumber();
-            checkOverlap(winningNumbers, bonusNumber);
-            List<Integer> mostMatchLotto = RankMatcher.getMostMatchLotto(lottos, winningNumbers);
-            int matchCount = RankMatcher.getMatchCount();
-            System.out.println(matchCount);
-            boolean bonus = RankMatcher.matchBonus(mostMatchLotto, bonusNumber);
-            System.out.println(bonus);
-            Map<LottoRank, Integer> result = setMatchRank(matchCount, bonus);
-            OutputView.printWinningLists(result);
-        } catch (Exception error) {
-            System.out.println(error.getMessage());
-        }
+        int purchasePrice = InputView.inputPurchasePrice();
+        OutputView.printAmount(getLottoAmount(purchasePrice));
+        List<List<Integer>> lottos = Lottos.makeLottos(getLottoAmount(purchasePrice));
+        List<Integer> winningNumbers = InputView.inputWinningNumber();
+        int bonusNumber = InputView.inputBonusNumber();
+        checkOverlap(winningNumbers, bonusNumber);
+        List<Integer> mostMatchLotto = RankMatcher.getMostMatchLotto(lottos, winningNumbers);
+        int matchCount = RankMatcher.getMatchCount();
+        boolean bonus = RankMatcher.matchBonus(mostMatchLotto, bonusNumber);
+        Map<LottoRank, Integer> result = setMatchRank(matchCount, bonus);
+        OutputView.printWinningLists(result);
+        OutputView.printRate(result, purchasePrice);
     }
 
-    public static Map<LottoRank, Integer> setMatchRank(int matchCount, boolean bonus) {
-        Map<LottoRank, Integer> result = setRankResult();
+    private static Map<LottoRank, Integer> setMatchRank(int matchCount, boolean bonus) {
+        Map<LottoRank, Integer> result = setResult();
         LottoRank rank = LottoRank.getRankResult(matchCount, bonus);
         result.put(rank, result.get(rank) + 1);
         return result;
     }
 
-    private static Map<LottoRank, Integer> setRankResult() {
+    private static Map<LottoRank, Integer> setResult() {
         Map<LottoRank, Integer> result = new LinkedHashMap<>();
         for (LottoRank rank : LottoRank.values()) {
             result.put(rank, 0);
         }
         return result;
+    }
+
+    private static int getLottoAmount(int purchasePrice) {
+        int lottoAmount = purchasePrice / DIVIDE;
+        return lottoAmount;
     }
 
     private static void checkOverlap(List<Integer> winningNumbers, int bonusNumber) {
