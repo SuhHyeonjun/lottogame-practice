@@ -1,14 +1,17 @@
 package lotto.view;
 
 import java.text.DecimalFormat;
+import java.util.List;
 import java.util.Map;
-import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 
 public class OutputView {
 
-    public static void printLottos(Lotto lotto) {
-        System.out.println(lotto);
+    public static void printLottos(List<List<Integer>> lottos) {
+        for (List<Integer> lotto : lottos) {
+            System.out.println(lotto);
+        }
+        System.out.println();
     }
 
     public static void printAmount(int lottoAmount) {

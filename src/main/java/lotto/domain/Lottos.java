@@ -4,7 +4,6 @@ import static lotto.domain.Lotto.makeLotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.view.OutputView;
 
 public class Lottos {
 
@@ -13,9 +12,7 @@ public class Lottos {
         for (int i = 0; i < lottoAmount; i++) {
             List<Integer> numbers = makeLotto();
             lottos.add(numbers);
-            OutputView.printLottos(new Lotto(numbers));
         }
-        System.out.println();
         return lottos;
     }
 }
