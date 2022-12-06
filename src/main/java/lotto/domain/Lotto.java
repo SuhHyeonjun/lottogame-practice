@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lotto.view.ErrorMessage;
 
 public class Lotto {
@@ -24,12 +25,7 @@ public class Lotto {
 
     public static List<Integer> makeLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_RANGE, END_RANGE, LOTTO_COUNT);
-        sortLotto(numbers);
-        return numbers;
-    }
-
-    private static void sortLotto(List<Integer> numbers) {
-        Collections.sort(numbers);
+        return numbers.stream().sorted().collect(Collectors.toList());
     }
 
     public static void validateLottoRange(List<Integer> numbers) {
