@@ -28,11 +28,8 @@ public class InputWinningValidator {
     }
 
     private static void validateInputSeparator(String inputWinning) {
-        String[] checkString = inputWinning.split("");
-        for (String str : checkString) {
-            if (!str.equals(",")) {
-                throw new IllegalArgumentException(ErrorMessage.ERROR_INPUT_SEPARATOR.getErrorMessage());
-            }
+        if (!inputWinning.contains(",")) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_INPUT_SEPARATOR.getErrorMessage());
         }
     }
 
