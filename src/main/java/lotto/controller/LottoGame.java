@@ -18,6 +18,7 @@ public class LottoGame {
         int purchasePrice = InputView.inputPurchasePrice();
         OutputView.printAmount(getLottoAmount(purchasePrice));
         List<List<Integer>> lottos = Lottos.makeLottos(getLottoAmount(purchasePrice));
+        OutputView.printLottos(lottos);
         List<Integer> winningNumbers = InputView.inputWinningNumber();
         int bonusNumber = InputView.inputBonusNumber();
         checkOverlap(winningNumbers, bonusNumber);
